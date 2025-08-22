@@ -1,4 +1,4 @@
-; Move to Absolute XYZ position 
+; Move to Machine XYZ position 
 ; Created by Cohen Weston on August 22, 2025
 
 M400
@@ -20,7 +20,6 @@ if result == -1
 
 
 else
-  G90
   ; X
   M291 R"Target X" P{"Enter X (mm). Default = current<br>Allowed values: " ^ {var.xMin} ^  " to " ^ {var.xMax}} S6 F{var.xCur} L{var.xMin} H{var.xMax} J2
   if result == -1
@@ -44,4 +43,4 @@ else
   var feed = input
 
   G94
-  G1 X{var.xT} Y{var.yT} Z{var.zT} F{var.feed}
+  G53 G1 X{var.xT} Y{var.yT} Z{var.zT} F{var.feed}

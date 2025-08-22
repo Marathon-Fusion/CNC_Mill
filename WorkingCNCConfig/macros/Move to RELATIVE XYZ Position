@@ -29,7 +29,6 @@ else
   var zLow = var.zMin - var.zCur
   var zHigh = var.zMax - var.zCur
 
-  G91
   ; X Δ
   M291 R"ΔX" P{"Enter X offset (mm). Default = 0<br>Allowed values: " ^ {var.xLow} ^  " to " ^ {var.xHigh}} S6 F0 L{var.xLow} H{var.xHigh} J2
   if result == -1
@@ -53,4 +52,4 @@ else
   var feedR = input
 
   G94
-  G1 X{var.dx} Y{var.dy} Z{var.dz} F{var.feedR}
+  G91 G1 X{var.dx} Y{var.dy} Z{var.dz} F{var.feedR}
