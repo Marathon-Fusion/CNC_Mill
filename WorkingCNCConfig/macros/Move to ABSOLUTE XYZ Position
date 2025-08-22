@@ -1,0 +1,59 @@
+; Move to ABSOLUTE XYZ position 
+; Created by Cohen Weston on August 22, 2025
+
+M400
+
+; Snapshot current user positions and soft limits
+var xCur = move.axes[0].userPosition
+var yCur = move.axes[1].userPosition
+var zCur = move.axes[2].userPosition
+
+var xOrg = move.axes[0].workplaceOffsets[0]
+var yOrg = move.axes[1].workplaceOffsets[0]
+var zOrg = move.axes[2].workplaceOffsets[0]
+
+var xMin = move.axes[0].min
+var xMax = move.axes[0].max
+var yMin = move.axes[1].min
+var yMax = move.axes[1].max
+var zMin = move.axes[2].min
+var zMax = move.axes[2].max
+
+M291 P"Move to ABSOLUTE XYZ position (relative to USER DEFINED origin)?" S3 J2
+if result == -1
+  abort "Move cancelled"
+
+
+else
+  ; Compute safe relative bounds so soft limits cannot be exceeded
+  var xLow = var.xMin - var.xOrg
+  var xHigh = var.xMax -  var.xOrg
+  var yLow = var.yMin - var.yOrg
+  var yHigh = var.yMax -  var.yOrg
+  var zLow = var.zMin - var.zOrg
+  var zHigh = var.zMax -  var.zOrg
+
+  ; X
+  M291 R"X" P{"Enter X position (mm). Default = current<br>Allowed values: " ^ {var.xLow} ^  " to " ^ {var.xHigh}} S6 F{var.xCur} L{var.xLow} H{var.xHigh} J2
+  if result == -1
+    abort "Move cancelled"
+  var dx = input
+  ; Y
+  M291 R"Y" P{"Enter Y position (mm). Default = current<br>Allowed values: " ^ {var.yLow} ^  " to " ^ {var.yHigh}} S6 F{var.yCur} L{var.yLow} H{var.yHigh} J2
+  if result == -1
+    abort "Move cancelled"
+  var dy = input
+  ; Z
+  M291 R"Z" P{"Enter Z position (mm). Default = current<br>Allowed values: " ^ {var.zLow} ^  " to " ^ {var.zHigh}} S6 F{var.zCur} L{var.zLow} H{var.zHigh} J2
+  if result == -1
+    abort "Move cancelled"
+  var dz = input
+
+  ; Feedrate (mm/min)
+  M291 R"Feedrate" P"Enter F in mm/min" S5 F3000 L1 J2
+  if result == -1
+    abort "Move cancelled"
+  var feedR = input
+
+  G94
+  G90 G1 X{var.dx} Y{var.dy} Z{var.dz} F{var.feedR}

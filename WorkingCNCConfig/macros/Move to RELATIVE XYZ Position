@@ -15,7 +15,7 @@ var yMax = move.axes[1].max
 var zMin = move.axes[2].min
 var zMax = move.axes[2].max
 
-M291 P"Move to RELATIVE XYZ position?" S3 J2
+M291 P"Move to RELATIVE XYZ position (relative to CURRENT position)?" S3 J2
 if result == -1
   abort "Move cancelled"
 
