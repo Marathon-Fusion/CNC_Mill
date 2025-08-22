@@ -49,3 +49,6 @@ M563 P0 S"Spindle" R0       ; tool 0 uses spindle 0
 ; Miscellaneous
 M453 ; select CNC mode
 T0 ; select first tool
+
+M291 P"Before doing anything, home the axes to the top left corner of the vice using the homing toolpiece. If you do not do this, bad things may happen" S3
+
