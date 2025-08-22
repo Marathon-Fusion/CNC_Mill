@@ -12,5 +12,5 @@ M291 P"The current tool position is the machine origin. If this is not the top l
 
 M564 H1 S1                      ; enforce soft limits
 
-
+M581 T0 X Y Z S0 ; enforce hard limits (trigger e-stop if any switch is hit)
 

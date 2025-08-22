@@ -37,9 +37,9 @@ M201 X50 Y50 Z20 ; set accelerations (mm/s^2)
 M669 K0 ; configure Cartesian kinematics
 
 ; Endstops
-M574 X0 ; configure X axis endstop
-M574 Y0 ; configure Y axis endstop
-M574 Z0 ; configure Z axis endstop
+M574 X1 S1 P"io0.in" ; configure X axis endstop (both x endstop switches will be connected in series)
+M574 Y1 S1 P"io1.in" ; configure Y axis endstop (both y endstop switches will be connected in series)
+M574 Z1 S1 P"io2.in" ; configure Z axis endstop (both z endstop switches will be connected in series)
 
 ; Tools / Spindle (external spindle -> dummy mapping)
 M950 R0 C"nil"              ; define spindle 0 on no hardware pin
