@@ -15,7 +15,6 @@ var yMax = move.axes[1].max
 var zMin = move.axes[2].min
 var zMax = move.axes[2].max
 
-; --- Pick positioning mode ---
 M291 P"Move to RELATIVE XYZ position?" S3 J2
 if result == -1
   abort "Move cancelled"
@@ -32,17 +31,17 @@ else
 
   G91
   ; X Δ
-  M291 R"ΔX" P{"Enter X offset (mm). Default = 0<br>Allowed values:" ^ {var.xLow} ^  " to " ^ {var.xHigh}} S6 F0 L{var.xLow} H{var.xHigh} J2
+  M291 R"ΔX" P{"Enter X offset (mm). Default = 0<br>Allowed values: " ^ {var.xLow} ^  " to " ^ {var.xHigh}} S6 F0 L{var.xLow} H{var.xHigh} J2
   if result == -1
     abort "Move cancelled"
   var dx = input
   ; Y Δ
-  M291 R"ΔY" P{"Enter Y offset (mm). Default = 0<br>Allowed values:" ^ {var.yLow} ^  " to " ^ {var.yHigh}} S6 F0 L{var.yLow} H{var.yHigh} J2
+  M291 R"ΔY" P{"Enter Y offset (mm). Default = 0<br>Allowed values: " ^ {var.yLow} ^  " to " ^ {var.yHigh}} S6 F0 L{var.yLow} H{var.yHigh} J2
   if result == -1
     abort "Move cancelled"
   var dy = input
   ; Z Δ
-  M291 R"ΔZ" P{"Enter Z offset (mm). Default = 0<br>Allowed values:" ^ {var.zLow} ^  " to " ^ {var.zHigh}} S6 F0 L{var.zLow} H{var.zHigh} J2
+  M291 R"ΔZ" P{"Enter Z offset (mm). Default = 0<br>Allowed values: " ^ {var.zLow} ^  " to " ^ {var.zHigh}} S6 F0 L{var.zLow} H{var.zHigh} J2
   if result == -1
     abort "Move cancelled"
   var dz = input
