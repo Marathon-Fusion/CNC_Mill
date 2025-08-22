@@ -3,8 +3,8 @@
 ;
 ; created by Cohen Weston on August 22nd, 2025
 
-
-M291 P"Moving to part origin" S3
+M291 P"Move to part origin?" S3
 G0 X0 Y0 Z0
+
 
 
