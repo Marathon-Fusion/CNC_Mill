@@ -50,6 +50,6 @@ M563 P0 S"Spindle" R0       ; tool 0 uses spindle 0
 M453 ; select CNC mode
 T0 ; select first tool
 
+M291 P"<b><h1>WARNING!!!</b></h1><br>You MUST jog the axes to the top left corner of the vice using the homing toolpiece, then press Home All.<br>If you do not do this, bad things may happen. Be careful to not move beyond the axes limits." S2
 M564 H0 S0                      ; allow moves before homing so that user can home the axes
-M291 P"Before doing anything, home the axes to the top left corner of the vice using the homing toolpiece. If you do not do this, bad things may happen. Be careful not move beyond the axes limits, or else you will trigger an E-stop." S3
 

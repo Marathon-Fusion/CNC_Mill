@@ -5,9 +5,10 @@
 ; modified by Cohen Weston on August 22nd, 2025
 
 ; --- Manual home all axes ---
-G92 X0 Y0 Z0                       ; current position = machine X0 Y0
 
-M291 P"The current tool position is the machine origin. If this is not the top left corner of the vice, restart the Duet board, jog to there and press Home All again. Don't forget to use the homing toolpiece to get an accurate Z home" S3
+
+G92 X0 Y0 Z0                       ; current position = machine X0 Y0
+M291 P"The current tool position is the machine origin. If this is not the top left corner of the vice, restart the Duet board, jog to there and press Home All again. Don't forget to use the homing toolpiece to get an accurate Z home" S2
 
 M564 H1 S1                      ; enforce soft limits
 
