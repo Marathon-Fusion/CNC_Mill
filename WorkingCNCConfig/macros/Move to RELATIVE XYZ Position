@@ -1,0 +1,57 @@
+; Move to RELATIVE XYZ position 
+; Created by Cohen Weston on August 22, 2025
+
+M400
+
+; Snapshot current user positions and soft limits
+var xCur = move.axes[0].userPosition
+var yCur = move.axes[1].userPosition
+var zCur = move.axes[2].userPosition
+
+var xMin = move.axes[0].min
+var xMax = move.axes[0].max
+var yMin = move.axes[1].min
+var yMax = move.axes[1].max
+var zMin = move.axes[2].min
+var zMax = move.axes[2].max
+
+; --- Pick positioning mode ---
+M291 P"Move to RELATIVE XYZ position?" S3 J2
+if result == -1
+  abort "Move cancelled"
+
+
+else
+  ; Compute safe relative bounds so soft limits cannot be exceeded
+  var xLow = var.xMin - var.xCur
+  var xHigh = var.xMax - var.xCur
+  var yLow = var.yMin - var.yCur
+  var yHigh = var.yMax - var.yCur
+  var zLow = var.zMin - var.zCur
+  var zHigh = var.zMax - var.zCur
+
+  G91
+  ; X Δ
+  M291 R"ΔX" P{"Enter X offset (mm). Default = 0<br>Allowed values:" ^ {var.xLow} ^  " to " ^ {var.xHigh}} S6 F0 L{var.xLow} H{var.xHigh} J2
+  if result == -1
+    abort "Move cancelled"
+  var dx = input
+  ; Y Δ
+  M291 R"ΔY" P{"Enter Y offset (mm). Default = 0<br>Allowed values:" ^ {var.yLow} ^  " to " ^ {var.yHigh}} S6 F0 L{var.yLow} H{var.yHigh} J2
+  if result == -1
+    abort "Move cancelled"
+  var dy = input
+  ; Z Δ
+  M291 R"ΔZ" P{"Enter Z offset (mm). Default = 0<br>Allowed values:" ^ {var.zLow} ^  " to " ^ {var.zHigh}} S6 F0 L{var.zLow} H{var.zHigh} J2
+  if result == -1
+    abort "Move cancelled"
+  var dz = input
+
+  ; Feedrate (mm/min)
+  M291 R"Feedrate" P"Enter F in mm/min" S5 F3000 L1 J2
+  if result == -1
+    abort "Move cancelled"
+  var feedR = input
+
+  G94
+  G1 X{var.dx} Y{var.dy} Z{var.dz} F{var.feedR}
