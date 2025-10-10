@@ -7,6 +7,7 @@
 G90 ; absolute coordinates
 M83 ; relative extruder moves
 M550 P"Will''s Mill" ; set hostname
+M551 P"" ; set no password for DWC
 
 ; Network
 M552 P0.0.0.0 S1 ; configure Ethernet adapter
