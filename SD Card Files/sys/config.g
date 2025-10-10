@@ -14,6 +14,8 @@ M586 P0 S1 ; configure HTTP
 M552 S0
 M552 S1 P192.168.0.101 ; set ip address manually
 
+M552 I1 S1 ; enable wifi 
+
 ; Smart Drivers
 M569 P0.0 S1 D2 ; driver 0.0 goes forwards (X axis)
 M569 P0.1 S1 D2 ; driver 0.1 goes forwards (Y axis)
@@ -28,7 +30,7 @@ M584 X0.0 Y0.1 Z0.2 ; set axis mapping
 M350 X16 Y16 Z16 I1 ; configure microstepping with interpolation
 M906 X4000 Y4000 Z4000 ; set axis driver currents
 M92 X640 Y640 Z640 ; configure steps per mm
-M208 X-50:200 Y-50:200 Z-50:200 ; set minimum and maximum axis limits
+M208 X-200:200 Y-200:200 Z-200:200 ; set minimum and maximum axis limits
 M566 X600 Y600 Z12 ; set maximum instantaneous speed changes (mm/min)
 M203 X600 Y600 Z180 ; set maximum speeds (mm/min)
 M201 X50 Y50 Z20 ; set accelerations (mm/s^2)
