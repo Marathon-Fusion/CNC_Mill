@@ -32,7 +32,7 @@ M584 X0.0 Y0.1 Z0.2 ; set axis mapping
 M350 X16 Y16 Z16 I1 ; configure microstepping with interpolation
 M906 X4000 Y4000 Z4000 ; set axis driver currents
 M92 X640 Y640 Z640 ; configure steps per mm
-M208 X0:400 Y0:200 Z-500:0 ; set minimum and maximum axis limits
+M208 X0:485 Y0:167 Z-500:0 ; set minimum and maximum axis limits
 M566 X600 Y600 Z12 ; set maximum instantaneous speed changes (mm/min)
 M203 X600 Y600 Z180 ; set maximum speeds (mm/min)
 M201 X50 Y50 Z20 ; set accelerations (mm/s^2)
@@ -54,6 +54,6 @@ M563 P0 S"Spindle" R0       ; tool 0 uses spindle 0
 M453 ; select CNC mode
 T0 ; select first tool
 
-M291 P"<b><h1>WARNING!!!</b></h1><br>You MUST jog the axes to the top left corner of the vice using the homing toolpiece, then press Home All.<br>If you do not do this, bad things may happen. Be careful to not move beyond the axes limits." S2
+M291 P"<b><h1>WARNING!!!</b></h1><br>Machine is NOT homed. Press <i>Home All</i> to home axes before doing anything. If you do not, bad things will happen." S2
 M564 H0 S0                      ; allow moves before homing so that user can home the axes
 

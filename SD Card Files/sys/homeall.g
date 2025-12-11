@@ -9,15 +9,16 @@
 ; homeall.g – Home Z (max), X, Y; go to vise corner; set G54; enable E-stop on limits
 
 M291 R"Home all axes" P"Ensure Z is clear. Z will move UP, then X/Y will home." S2
+M581 T0 X Y Z R-1 S0 ; disable hard limits during homing
+
 
 G91                      ; relative moves
 
 ; ----- Home Z to MAX (requires Z-max switch wired & M574 Z2 above) -----
-; You can comment this section out until you physically install the Z switch.
 
-G1 H1 Z250 F600          ; up to +250mm or until Z-max switch hits
-G1 H2 Z-5 F300           ; down 5mm ignoring endstops/limits (back off a bit)
-G1 H1 Z10 F200           ; slow up again until Z-max switch hits
+; G1 H1 Z250 F600          ; up to +250mm or until Z-max switch hits
+; G1 H2 Z-5 F300           ; down 5mm ignoring endstops/limits (back off a bit)
+; G1 H1 Z10 F200           ; slow up again until Z-max switch hits
 ; At this point Z is set to M208 Z-max, i.e. Z = 0
 
 
@@ -28,9 +29,9 @@ G1 H1 X-10 F600          ; slow re-approach
 
 
 ; ----- Home Y toward MIN -----
-G1 H1 Y-350 F3000        ; fast move toward Y- endstop (set > Y travel)
-G1 Y5 F6000              ; back off
-G1 H1 Y-10 F600          ; slow re-approach
+G1 H1 Y350 F3000        ; fast move toward Y- endstop (set > Y travel)
+G1 Y-5 F6000              ; back off
+G1 H1 Y10 F600          ; slow re-approach
 
 G90                      ; back to absolute mode
 
@@ -43,17 +44,15 @@ G90                      ; back to absolute mode
 ; Example: X123.4 Y56.7 in machine space is the vise top-left corner.
 
 G54                      ; use work coordinate system 1
-G53 G90 G1 X123.4 Y56.7 F3000   ; move in MACHINE coords to vise corner
+G53 G90 G1 X0 Y0 F3000   ; move in MACHINE coords to vise corner
 
 ; Make vise corner the G54 XY origin
 G10 L20 P1 X0 Y0         ; current position becomes X0 Y0 in G54
 
-M291 R"Homing complete"
-     P"G54 XY origin set at vise corner. Jog Z and set work Z-zero manually."
-     S1
+M291 R"Homing complete" P"User XY origin set at vise corner. Jog Z and set work Z-zero manually." S2
 
 
 
 M564 H1 S1                      ; enforce soft limits
-M581 T0 X Y Z S0 ; enforce hard limits (trigger e-stop if any switch is hit)
+M581 T0 X Y Z R0 S0 ; enforce hard limits (trigger e-stop if any switch is hit)
 
