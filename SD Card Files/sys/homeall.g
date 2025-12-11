@@ -10,7 +10,7 @@
 
 M291 R"Home all axes" P"Ensure Z is clear. Z will move UP, then X/Y will home." S2
 M581 T0 X Y Z R-1 S0 ; disable hard limits during homing
-
+M564 H0 S0           ; disable soft limits during homing
 
 G91                      ; relative moves
 
@@ -19,17 +19,17 @@ G91                      ; relative moves
 ; G1 H1 Z250 F600          ; up to +250mm or until Z-max switch hits
 ; G1 H2 Z-5 F300           ; down 5mm ignoring endstops/limits (back off a bit)
 ; G1 H1 Z10 F200           ; slow up again until Z-max switch hits
-; At this point Z is set to M208 Z-max, i.e. Z = 0
+G92 Z0 ;temporary while no Z switch
 
 
 ; ----- Home X toward MIN -----
-G1 H1 X-350 F3000        ; fast move toward X- endstop (set > X travel)
+G1 H1 X-500 F3000        ; fast move toward X- endstop (set > X travel)
 G1 X5 F6000              ; back off
 G1 H1 X-10 F600          ; slow re-approach
 
 
 ; ----- Home Y toward MIN -----
-G1 H1 Y350 F3000        ; fast move toward Y- endstop (set > Y travel)
+G1 H1 Y200 F3000        ; fast move toward Y- endstop (set > Y travel)
 G1 Y-5 F6000              ; back off
 G1 H1 Y10 F600          ; slow re-approach
 
