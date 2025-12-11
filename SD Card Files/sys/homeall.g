@@ -12,6 +12,7 @@ M291 R"Home all axes" P"Ensure Z is clear. Z will move UP, then X/Y will home." 
 M581 T0 X Y Z R-1 S0 ; disable hard limits during homing
 M564 H0 S0           ; disable soft limits during homing
 
+
 G91                      ; relative moves
 
 ; ----- Home Z to MAX (requires Z-max switch wired & M574 Z2 above) -----
