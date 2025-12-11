@@ -42,7 +42,7 @@ M669 K0 ; configure Cartesian kinematics
 
 ; Endstops
 M574 X1 S1 P"io0.in" ; configure X axis endstop (both x endstop switches will be connected in series)
-M574 Y2 S1 P"io1.in" ; configure Y axis endstop (both y endstop switches will be connected in series)
+M574 Y1 S1 P"io1.in" ; configure Y axis endstop (both y endstop switches will be connected in series)
 M574 Z1 S1 P"io2.in" ; configure Z axis endstop (only one z endstop switch is used since lower limit is toolhead-dependent)
 
 ; Tools / Spindle (external spindle -> dummy mapping)

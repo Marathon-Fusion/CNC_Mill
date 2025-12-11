@@ -24,28 +24,29 @@ G92 Z0 ;temporary while no Z switch
 
 
 ; ----- Home X toward MIN -----
-G1 H1 X-500 F3000        ; fast move toward X- endstop (set > X travel)
+G1 H1 X-500 F3000        ; fast move toward X- endstop
 G1 X5 F6000              ; back off
 G1 H1 X-10 F600          ; slow re-approach
+G1 X4 F600
+G92 X0                   ; set min slightly awway from switch              
 
 
-; ----- Home Y toward MIN -----
-G1 H1 Y200 F3000        ; fast move toward Y- endstop (set > Y travel)
+; ----- Home Y toward MAX -----
+G1 H1 Y200 F3000        ; fast move toward Y+ endstop
 G1 Y-5 F6000              ; back off
 G1 H1 Y10 F600          ; slow re-approach
+G1 Y-4 F600
+G92 Y167                ; set max slightly away from switch
 
 G90                      ; back to absolute mode
 
-; Machine coords now:
-;   X=0, Y=0 at min switches (M208 mins)
-;   Z=0 at max switch (M208 max) if Z section enabled
+
 
 ; ----- Move to vise corner in MACHINE coords and set G54 -----
-; EDIT these machine coordinates to your real vise corner location.
-; Example: X123.4 Y56.7 in machine space is the vise top-left corner.
+
 
 G54                      ; use work coordinate system 1
-G53 G90 G1 X0 Y0 F3000   ; move in MACHINE coords to vise corner
+G53 G90 G1 X0 Y167 F3000   ; move in MACHINE coords to vise corner
 
 ; Make vise corner the G54 XY origin
 G10 L20 P1 X0 Y0         ; current position becomes X0 Y0 in G54
