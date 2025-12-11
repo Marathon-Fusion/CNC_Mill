@@ -36,7 +36,7 @@ G1 H1 Y200 F3000        ; fast move toward Y+ endstop
 G1 Y-5 F6000              ; back off
 G1 H1 Y10 F600          ; slow re-approach
 G1 Y-4 F600
-G92 Y167                ; set max slightly away from switch
+G92 Y164                ; set max slightly away from switch
 
 G90                      ; back to absolute mode
 
@@ -46,12 +46,12 @@ G90                      ; back to absolute mode
 
 
 G54                      ; use work coordinate system 1
-G53 G90 G1 X0 Y167 F3000   ; move in MACHINE coords to vise corner
+G53 G90 G1 X75 Y133 F3000   ; move in MACHINE coords to vise corner
 
 ; Make vise corner the G54 XY origin
 G10 L20 P1 X0 Y0         ; current position becomes X0 Y0 in G54
 
-M291 R"Homing complete" P"User XY origin set at vise corner. Jog Z and set work Z-zero manually." S2
+M291 R"Homing complete" P"User XY origin set at vise corner. <b>Be sure to set your own origin based on your toolpath before starting a part</b>." S2
 
 
 

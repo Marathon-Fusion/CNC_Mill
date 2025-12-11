@@ -32,7 +32,7 @@ M584 X0.0 Y0.1 Z0.2 ; set axis mapping
 M350 X16 Y16 Z16 I1 ; configure microstepping with interpolation
 M906 X4000 Y4000 Z4000 ; set axis driver currents
 M92 X640 Y640 Z640 ; configure steps per mm
-M208 X0:485 Y0:167 Z-500:0 ; set minimum and maximum axis limits
+M208 X0:485 Y0:164 Z-500:0 ; set minimum and maximum axis limits
 M566 X600 Y600 Z12 ; set maximum instantaneous speed changes (mm/min)
 M203 X600 Y600 Z180 ; set maximum speeds (mm/min)
 M201 X50 Y50 Z20 ; set accelerations (mm/s^2)
